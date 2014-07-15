@@ -48,9 +48,13 @@ print()
 
 for filename in sorted(contents):
     document_words = set(words[filename])
-    other_words = (set(chain.from_iterable(words[other] for other in contents.keys() - {filename})))
-    
+    other_words = set(
+        chain.from_iterable(
+            words[other]
+            for other in contents.keys() - {filename}
+        )
+    )
+
     print("Unique to {}:".format(filename))
     print(document_words - other_words)
     print()
-
